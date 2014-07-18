@@ -167,12 +167,15 @@ WeChat Subscribers Lite
     text-decoration:none;
     font-size:25px;
     color:#555;
-    left:520px;
-    top:-20px;
+    left:509px;
+    top:-19px;
+    margin: 0;
+    padding: 0;
 }
 #easydialog_close:hover{
     color:#2EA2CC;
 }
 #dialog_content__container{
-	min-height: 310px;
+	min-height: 320px;
 }
+

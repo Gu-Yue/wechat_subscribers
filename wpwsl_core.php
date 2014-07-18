@@ -32,7 +32,12 @@ add_action('plugins_loaded', 'load_languages_file');
 function load_languages_file(){
 	load_plugin_textdomain( 'WPWSL', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
-
+//Setup wechat image size
+add_action( 'after_setup_theme','set_wechat_img_size'); 
+function set_wechat_img_size(){
+	add_image_size( 'sup_wechat_big'  , 360,200, true );
+	add_image_size( 'sup_wechat_small', 200,200, true );
+}
 
 //Setup Admin
 add_action('_admin_menu', 'wpwsl_admin_setup');
@@ -220,6 +225,7 @@ function prefix_ajax_add_foobar(){
 
 add_action( 'wp_ajax_get_insert_content', 'prefix_ajax_get_insert_content' );
 function prefix_ajax_get_insert_content(){
+	require_once('simple_html_dom.php');
 	if($_GET['rtype']=="posts"){
 	        $myrow = get_post($_GET['postid']);
 	        $post_categories  =  wp_get_post_categories($myrow->ID);
@@ -229,11 +235,10 @@ function prefix_ajax_get_insert_content(){
 				$cats .= ",".$cat->name;
 			}
 			$cats = substr($cats,1);
-			require_once('simple_html_dom.php');
             $post = htmlspecialchars_decode($myrow->post_content);
     		$html = str_get_html($post);
 
-			$rpost = "#".$myrow->post_title."#[".$myrow->post_date."]{".$html->plaintext."}~".$myrow->post_date."~";
+			$rpost = "#".$myrow->post_title."#".$html->plaintext."[".$myrow->guid."][".$myrow->post_date."]";
 			$r = array(
 				"status" => "success",
 				"data"   => $rpost
@@ -244,6 +249,39 @@ function prefix_ajax_get_insert_content(){
         	"status"=>"success",
             "data"  =>$myrow->guid
         	);
+	}else if($_GET['rtype']=="phmsg"){
+		$imageSize = isset($_GET['imagesize'])&&$_GET['imagesize']=="small" ? "sup_wechat_small":"sup_wechat_big";
+		$myrow = get_post($_GET['postid']);
+		
+				
+				$myrow->pic = "none";
+				if(has_post_thumbnail($_GET['postid'])){
+				   $myrow->pic = wp_get_attachment_image_src(get_post_thumbnail_id($_GET['postid']),$imageSize)[0];
+				}else if(has_post_thumbnail($_GET['postid'])==""&&trim($myrow->post_content)!=""){
+				   $html = str_get_html(htmlspecialchars_decode($myrow->post_content));
+				   $myrow->post_content = trim($html->plaintext);
+				   $img = $html->find('img',0);
+				   if($img){
+				   if($img->class&&stripos($img->class,"wp-image-")!==false){
+				      $classes = explode(" ",$img->class);
+				      $id = null;
+				      foreach ($classes as $value) {
+				      	if(stripos($value,"wp-image-")!==false){ $id = substr(trim($value),9);break;} 
+				      }
+				      if($id){
+				      	$myrow->pic = wp_get_attachment_image_src($id,$imageSize)[0];
+				      }  
+				      
+				   }else{
+				   	  $myrow->pic = $img->src;
+				   }
+				   }
+				}
+		
+        $r = array(
+        	"status"=>"success",
+            "data"  =>$myrow
+        	);   
 	}else{
 		$r = array(
 				"status" => "error",

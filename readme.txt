@@ -86,9 +86,6 @@ Please visit <a href="http://www.imredy.com/wp_wechat">http://www.imredy.com/wp_
 
 == Changelog ==
 =汉语=
-2014年7月11日 更新到1.05
-1. 编辑回复选项时增加了插入文章和URL按钮，弹出窗口对已有的文章和页面进行检索插入
-2. 增加了自动回复最新文章或页面的功能
 
 2014年3月14日 更新到 1.04
 
