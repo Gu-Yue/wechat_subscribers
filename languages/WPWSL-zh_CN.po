@@ -59,6 +59,14 @@ msgstr "操作"
 msgid "Insert"
 msgstr "插入"
 
+#: wpwsl_core.php:44
+msgid "WeChat big image"
+msgstr "微信大图"
+
+#: wpwsl_core.php:45
+msgid "WeChat small image"
+msgstr "微信小图"
+
 #: _edit.php:217
 msgid "Basic Settings"
 msgstr "基本设置"

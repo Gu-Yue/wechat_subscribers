@@ -38,6 +38,14 @@ function set_wechat_img_size(){
 	add_image_size( 'sup_wechat_big'  , 360,200, true );
 	add_image_size( 'sup_wechat_small', 200,200, true );
 }
+add_filter( 'image_size_names_choose', 'sup_wechat_custom_sizes' );
+
+function sup_wechat_custom_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'sup_wechat_big' => __('WeChat big image','WPWSL'),
+        'sup_wechat_small' => __('WeChat small image','WPWSL')
+    ) );
+}
 
 //Setup Admin
 add_action('_admin_menu', 'wpwsl_admin_setup');
@@ -113,7 +121,7 @@ function prefix_ajax_add_foobar(){
 		 $args_cate = array(
 		'type'                     => 'post',
 		'orderby'                  => 'name',
-		'order'                    => 'ASC',
+		'order'                    => 'name ASC',
 		'taxonomy'                 => 'category',
 		'pad_counts'               => false 
 		);
@@ -129,7 +137,7 @@ function prefix_ajax_add_foobar(){
 	    'offset'           => $offset,	
 		'posts_per_page'   => $posts_per_page,
 		'orderby'          => 'post_date',
-		'order'            => 'ASC',
+		'order'            => 'post_date desc',
 		'post_type'        => $post_type,
 		'post_status'      => 'publish'
 		);
@@ -252,30 +260,33 @@ function prefix_ajax_get_insert_content(){
 	}else if($_GET['rtype']=="phmsg"){
 		$imageSize = isset($_GET['imagesize'])&&$_GET['imagesize']=="small" ? "sup_wechat_small":"sup_wechat_big";
 		$myrow = get_post($_GET['postid']);
-		
-				
 				$myrow->pic = "none";
 				if(has_post_thumbnail($_GET['postid'])){
 				   $myrow->pic = wp_get_attachment_image_src(get_post_thumbnail_id($_GET['postid']),$imageSize)[0];
-				}else if(has_post_thumbnail($_GET['postid'])==""&&trim($myrow->post_content)!=""){
+				}else if(has_post_thumbnail($_GET['postid'])==""&&trim($myrow->post_content)!=""){			   
 				   $html = str_get_html(htmlspecialchars_decode($myrow->post_content));
-				   $myrow->post_content = trim($html->plaintext);
 				   $img = $html->find('img',0);
 				   if($img){
-				   if($img->class&&stripos($img->class,"wp-image-")!==false){
-				      $classes = explode(" ",$img->class);
-				      $id = null;
-				      foreach ($classes as $value) {
-				      	if(stripos($value,"wp-image-")!==false){ $id = substr(trim($value),9);break;} 
-				      }
-				      if($id){
-				      	$myrow->pic = wp_get_attachment_image_src($id,$imageSize)[0];
-				      }  
-				      
+					   if($img->class&&stripos($img->class,"wp-image-")!==false){
+					      $classes = explode(" ",$img->class);
+					      $id = null;
+					      foreach ($classes as $value) {
+					      	if(stripos($value,"wp-image-")!==false){ $id = substr(trim($value),9);break;} 
+					      }
+					      if($id){
+					      	$myrow->pic = wp_get_attachment_image_src($id,$imageSize)[0];
+					      }  
+					      
+					   }else{
+					   	  $myrow->pic = $img->src;
+					   }
 				   }else{
-				   	  $myrow->pic = $img->src;
+				   	   $myrow->pic = WPWSL_PLUGIN_URL."/img/default_img.png";
 				   }
-				   }
+				}
+				if(trim($myrow->post_content!="")){
+					$html = str_get_html(htmlspecialchars_decode($myrow->post_content)); 
+					$myrow->post_content = trim($html->plaintext);
 				}
 		
         $r = array(

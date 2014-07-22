@@ -273,7 +273,11 @@ class wechatCallbackapi{
 					   	  $rimg = $img->src;
 					   }
 				   }
-				   $text = $html->plaintext;
+				}
+
+				if(trim($myrow->post_content!="")){
+					$html = str_get_html(htmlspecialchars_decode($post)); 
+					$text = trim($html->plaintext);
 				}	
 	    	}
 	    	if($rimg) $result = array("src"=>$rimg,"text"=>$text);
