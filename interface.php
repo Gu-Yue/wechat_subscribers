@@ -89,9 +89,10 @@ class wechatCallbackapi{
         	exit;
         }
     }
-	private function saveMessage($fromUsername,$toUsername,$keyword,$match,$resultStr){
-        $messageRow = array("message"=>$fromUsername."###".$toUsername."###".$keyword."###".$match."###".$resultStr);
-		$rows_affected = $wpdb->insert("wechat_subscribers_lite_messages",$messageRow);
+	private function saveKeyWord($toUsername,$keyword,$match){
+        $messageRow = array("openid"=>$toUsername,"keyword"=>$keyword,"is_match"=>$match,"time"=>date("Y-m-d H:i:s",time()));
+        global $wpdb;
+		$rows_affected = $wpdb->insert("wechat_subscribers_lite_keywords",$messageRow);
 	}
 
 
@@ -122,7 +123,7 @@ class wechatCallbackapi{
 				
 			}
 		}
-		$match = $is_match ? 1 : 0;
+		$match = $is_match ? "y" : "n";
 		if(!$is_match){
 			foreach($this->data as $d){
 				if($d->trigger=='default' && !$is_match){
@@ -134,7 +135,7 @@ class wechatCallbackapi{
 				}
 			}
 		}
-		$this->saveMessage($fromUsername,$toUsername,$keyword,$match,$resultStr);
+		$this->saveKeyWord($toUsername,$keyword,$match);
 		return $resultStr;
 	}
 	

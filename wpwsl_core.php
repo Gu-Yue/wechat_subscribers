@@ -34,18 +34,18 @@ function load_languages_file(){
 }
 //create db table wechat_subscribers_lite_messages
  global $wpdb;
- $table_name ="wechat_subscribers_lite_messages"; 
+ $table_name ="wechat_subscribers_lite_keywords"; 
  $sql = "CREATE TABLE $table_name (
   id bigint(20) NOT NULL KEY AUTO_INCREMENT,  
-  openid varchar(100) NOT NULL,
-  message tinytext  NOT NULL,
-  mactch  int(1)    NOT NULL,
-  remessage tinytext  NOT NULL,
+  openid   varchar(100) NOT NULL,
+  keyword  varchar(255) NOT NULL,
+  is_match char(1)   NOT NULL,
   time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL
   );";
 
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-dbDelta( $sql );
+dbDelta($sql);
+
 //Setup wechat image size
 add_action( 'after_setup_theme','set_wechat_img_size'); 
 function set_wechat_img_size(){
