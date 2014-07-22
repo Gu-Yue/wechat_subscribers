@@ -281,7 +281,7 @@ function prefix_ajax_get_insert_content(){
 					   	  $myrow->pic = $img->src;
 					   }
 				   }else{
-				   	   $myrow->pic = WPWSL_PLUGIN_URL."/img/default_img.png";
+				   	   $myrow->pic = WPWSL_PLUGIN_URL."/img/trans.png";
 				   }
 				}
 				if(trim($myrow->post_content!="")){
