@@ -3,17 +3,6 @@
  * Settings Page, It's required by WPWSLGeneral Class only.
  *
  */
-echo "hello<br>";
-if ( has_post_thumbnail()) {
-   $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id(41), 'large');
-   echo '<a href="' . $large_image_url[0] . '" title="' . the_title_attribute('echo=0') . '" >';
-   echo get_the_post_thumbnail($post->ID, 'thumbnail'); 
-   echo '</a>';
- }else{
- 	echo "meiyoua!!!";
- }
-
-
 function redirect(){
 	$redirect = '<script type="text/javascript">';
 	$redirect .= 'window.location = "' . menu_page_url(WPWSL_GENERAL_PAGE,false). '"';

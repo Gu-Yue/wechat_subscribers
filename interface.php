@@ -89,7 +89,12 @@ class wechatCallbackapi{
         	exit;
         }
     }
-	
+	private function saveMessage($fromUsername,$toUsername,$keyword,$match,$resultStr){
+        $messageRow = array("message"=>$fromUsername."###".$toUsername."###".$keyword."###".$match."###".$resultStr);
+		$rows_affected = $wpdb->insert("wechat_subscribers_lite_messages",$messageRow);
+	}
+
+
 	private function sendAutoReply($postObj){
 
         $fromUsername = $postObj->FromUserName;
@@ -98,7 +103,6 @@ class wechatCallbackapi{
 		$resultStr='';
 		
 		$is_match=false;
-		
 		if($keyword!=''){
 			foreach($this->data as $d){
 				if($d->trigger=='default' || $d->trigger=='subscribe'){
@@ -118,7 +122,7 @@ class wechatCallbackapi{
 				
 			}
 		}
-		
+		$match = $is_match ? 1 : 0;
 		if(!$is_match){
 			foreach($this->data as $d){
 				if($d->trigger=='default' && !$is_match){
@@ -130,9 +134,11 @@ class wechatCallbackapi{
 				}
 			}
 		}
+		$this->saveMessage($fromUsername,$toUsername,$keyword,$match,$resultStr);
 		return $resultStr;
 	}
 	
+
 	private function eventRespon($postObj){
 		
         $fromUsername = $postObj->FromUserName;
