@@ -647,7 +647,7 @@ jQuery(document).ready(function ($) {
        //alert(data.tid+"  |  "+data.rtype);
        easyDialog.open({
 		container : {
-			content : '<div id="dialog_content__container" style="width:925px;margin:0px auto;border-radius:5px;"><table class="wp-list-table widefat fixed posts" style="min-height:100px;"><thead><tr><th style="text-align:center;height: 77px;">loading....</th></tr></thead></table></div>'
+			content : '<div id="dialog_content__container" style="width:inherit;margin:0px auto;border-radius:5px;"><table class="wp-list-table widefat fixed posts" style="min-height:100px;"><thead><tr><th style="text-align:center;height: 77px;">loading....</th></tr></thead></table></div>'
 			
 		},
 		fixed : true,
@@ -824,9 +824,7 @@ jQuery(document).ready(function ($) {
 		           return false;
 		       });	 
             });
-     }
-
-    
+       }
 
 });
 </script>
