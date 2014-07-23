@@ -306,6 +306,9 @@ msgstr "（空）"
 msgid "Add New Template"
 msgstr "添加新模版"
 
+msgid "Statistics"
+msgstr "消息统计"
+
 #: class-wpwsl-list-table.php:24
 msgid "No Item found."
 msgstr "什么都没有。"
@@ -348,3 +351,15 @@ msgid ""
 "&quot;Bind&quot; this URL to WeChat Platform."
 msgstr ""
 "首先设置好上面的TOKEN，保存设置以后使用这个URL绑定到你的微信公众平台订阅号。"
+
+#: _keywords.php 34
+msgid "Yes"
+msgstr "是"
+
+#: _keywords.php 34
+msgid "No"
+msgstr "否"
+
+#: class-wpwsl-keywords-table.php 35
+msgid "Match"
+msgstr "匹配"
