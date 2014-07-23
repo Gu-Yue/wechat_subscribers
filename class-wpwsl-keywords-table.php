@@ -21,7 +21,7 @@ class WPWSL_KeyWords_Table extends WP_List_Table {
 	}
 	
 	public function no_items() {
-		_e( '没有消息记录!');
+		_e( 'No records','WPWSL');
 	}
 	
 

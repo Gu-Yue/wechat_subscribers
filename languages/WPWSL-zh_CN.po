@@ -361,5 +361,9 @@ msgid "No"
 msgstr "否"
 
 #: class-wpwsl-keywords-table.php 35
+msgid "No records"
+msgstr "没有消息记录!"
+
+#: class-wpwsl-keywords-table.php 35
 msgid "Match"
 msgstr "匹配"

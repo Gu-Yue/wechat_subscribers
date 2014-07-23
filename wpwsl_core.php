@@ -40,7 +40,7 @@ function load_languages_file(){
   openid   varchar(100) NOT NULL,
   keyword  varchar(255) NOT NULL,
   is_match char(1)   NOT NULL,
-  time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL
+  time     datetime  NOT NULL
   );";
 
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );

@@ -32,7 +32,7 @@ $raw = $wpdb->get_results("select id,openid,keyword,is_match,time from wechat_su
 $data=array();
 foreach($raw as $d){
 	 $d->is_match = $d->is_match=="y"? __("Yes","WPWSL") :"<span style='color:red;'>".__("No","WPWSL")."<span>";
-	 $data[]=array('ID'=>$d->id, 'openid'=>$d->openid, 'keyword'=>$d->keyword, 'is_match' =>$d->is_match, 'time'=>mysql2date('Y.m.d H:i:s', $d->time));
+	 $data[]=array('ID'=>$d->id, 'openid'=>$d->openid, 'keyword'=>$d->keyword, 'is_match' =>$d->is_match, 'time'=>$d->time);
 }
 
 //Prepare Table of elements 
