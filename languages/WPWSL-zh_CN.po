@@ -253,6 +253,10 @@ msgstr "取消"
 msgid "Delete"
 msgstr "删除"
 
+#: _edit.php:361
+msgid "Edit"
+msgstr "编辑"
+
 #: _edit.php:407
 msgid "Recently messages"
 msgstr "最近消息"

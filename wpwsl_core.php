@@ -213,7 +213,7 @@ function prefix_ajax_add_foobar(){
     if(count($posts_array)==0){
         _e("<thead><tr><th style='text-align:center;height: 77px;'>".__('Search results is empty....','WPWSL')."</th></tr></thead>");
     }else{
-    _e("<thead><tr><th class='' width='50%'>".__('Title','WPWSL')."</th><th width='22%'><div sytle='text-align:center;'>".$typeORcate."</div></th><th width='21%'>".__('Create Date','WPWSL')."</th><th width='7%'>".__('Action','WPWSL')."</th></tr></thead>
+    _e("<thead><tr><th class='' width='50%'>".__('Title','WPWSL')."</th><th width='18%'><div sytle='text-align:center;'>".$typeORcate."</div></th><th width='20%'>".__('Create Date','WPWSL')."</th><th width='12%'>".__('Action','WPWSL')."</th></tr></thead>
     	<tbody>");
         $i=1;
 	    foreach ($posts_array as $key) {
@@ -299,11 +299,12 @@ function prefix_ajax_get_insert_content(){
                 if(trim($myrow->post_excerpt)!=""){
                    $myrow->post_content = $myrow->post_excerpt;
                 }else if(trim($myrow->post_content!="")){
-					$html = str_get_html(htmlspecialchars_decode($myrow->post_content)); 
-					$myrow->post_content = substr(trim($html->plaintext),0,300);
+					$html = str_get_html(htmlspecialchars_decode($myrow->post_content));
+					$myrow->post_content = wp_trim_words(trim($html->plaintext),120, '...' );
 				}
+
 				
-		
+	
         $r = array(
         	"status"=>"success",
             "data"  =>$myrow

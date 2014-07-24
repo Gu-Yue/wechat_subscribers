@@ -285,7 +285,7 @@ class wechatCallbackapi{
                     $text = $myrow->post_excerpt;
                 }else if(trim($myrow->post_content!="")){
 					$html = str_get_html(htmlspecialchars_decode($post)); 
-					$text = substr(trim($html->plaintext),0,300);
+					$text =  wp_trim_words(trim($html->plaintext),120, '...' );
 				}	
 	    	}
 	    	// if($rimg) 
