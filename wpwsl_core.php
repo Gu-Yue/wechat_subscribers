@@ -4,7 +4,7 @@
  * Plugin URI: http://www.imredy.com/wp_wechat/
  * Description: 轻便易用的微信(weixin)公众平台订阅号管理工具。Light weight WeChat (Subscribers) public platform management tool.
  * Version: 1.04
- * Author: Redy Ru,GuYue
+ * Author: Redy Ru,Gu Yue
  * Author URI: http://www.imredy.com/
  * License: GPLv2 or later
  * Text Domain: WPWSL
@@ -45,21 +45,22 @@ function load_languages_file(){
 
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 dbDelta($sql);
-
 //Setup wechat image size
-add_action( 'after_setup_theme','set_wechat_img_size'); 
 function set_wechat_img_size(){
 	add_image_size( 'sup_wechat_big'  , 360,200, true );
 	add_image_size( 'sup_wechat_small', 200,200, true );
 }
-add_filter( 'image_size_names_choose', 'sup_wechat_custom_sizes' );
+add_action( 'after_setup_theme','set_wechat_img_size'); 
 
 function sup_wechat_custom_sizes( $sizes ) {
-    return array_merge( $sizes, array(
+    return array_merge($sizes, array(
         'sup_wechat_big' => __('WeChat big image','WPWSL'),
         'sup_wechat_small' => __('WeChat small image','WPWSL')
-    ) );
+    ));
 }
+add_filter( 'image_size_names_choose', 'sup_wechat_custom_sizes' );
+
+
 
 //Setup Admin
 add_action('_admin_menu', 'wpwsl_admin_setup');
@@ -213,7 +214,7 @@ function prefix_ajax_add_foobar(){
     if(count($posts_array)==0){
         _e("<thead><tr><th style='text-align:center;height: 77px;'>".__('Search results is empty....','WPWSL')."</th></tr></thead>");
     }else{
-    _e("<thead><tr><th class='' width='50%'>".__('Title','WPWSL')."</th><th width='18%'><div sytle='text-align:center;'>".$typeORcate."</div></th><th width='20%'>".__('Create Date','WPWSL')."</th><th width='12%'>".__('Action','WPWSL')."</th></tr></thead>
+    _e("<thead><tr><th class='' width='50%'>".__('Title','WPWSL')."</th><th width='16%'><div sytle='text-align:center;'>".$typeORcate."</div></th><th width='22%'>".__('Create Date','WPWSL')."</th><th width='12%'>".__('Action','WPWSL')."</th></tr></thead>
     	<tbody>");
         $i=1;
 	    foreach ($posts_array as $key) {
@@ -260,7 +261,7 @@ function prefix_ajax_get_insert_content(){
             $post = htmlspecialchars_decode($myrow->post_content);
     		$html = str_get_html($post);
 
-			$rpost = "#".$myrow->post_title."#".$html->plaintext."[".$myrow->guid."][".$myrow->post_date."]";
+			$rpost = "#".wp_trim_words(trim($myrow->post_title),80,'...' )."#".wp_trim_words(trim($html->plaintext),500,'...' )."[".$myrow->guid."][".$myrow->post_date."]";
 			$r = array(
 				"status" => "success",
 				"data"   => $rpost

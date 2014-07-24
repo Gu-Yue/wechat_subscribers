@@ -26,9 +26,9 @@ function results_order() {
 
 $order = results_order();
 $paged = isset($_GET['paged']) ? $_GET['paged'] : 1;
-$start = ($paged-1)*10;
+$start = ($paged-1)*300;
 global $wpdb;
-$raw = $wpdb->get_results("select id,openid,keyword,is_match,time from wechat_subscribers_lite_keywords order by $order limit $start,10");
+$raw = $wpdb->get_results("select id,openid,keyword,is_match,time from wechat_subscribers_lite_keywords order by $order limit $start,300");
 $data=array();
 foreach($raw as $d){
 	 $d->is_match = $d->is_match=="y"? __("Yes","WPWSL") :"<span style='color:red;'>".__("No","WPWSL")."<span>";
