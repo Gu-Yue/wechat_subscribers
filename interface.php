@@ -89,8 +89,8 @@ class wechatCallbackapi{
         	exit;
         }
     }
-	private function saveKeyWord($toUsername,$keyword,$match){
-        $messageRow = array("openid"=>$toUsername,"keyword"=>$keyword,"is_match"=>$match,"time"=>date("Y-m-d H:i:s",time()));
+	private function saveKeyWord($fromUsername,$keyword,$match){
+        $messageRow = array("openid"=>$fromUsername,"keyword"=>$keyword,"is_match"=>$match,"time"=>current_time("Y-m-d H:i:s",0));
         global $wpdb;
 		$rows_affected = $wpdb->insert("wechat_subscribers_lite_keywords",$messageRow);
 	}
@@ -135,7 +135,7 @@ class wechatCallbackapi{
 				}
 			}
 		}
-		$this->saveKeyWord($toUsername,$keyword,$match);
+		$this->saveKeyWord($fromUsername,$keyword,$match);
 		return $resultStr;
 	}
 	
@@ -281,14 +281,16 @@ class wechatCallbackapi{
 					   }
 				   }
 				}
-
-				if(trim($myrow->post_content!="")){
+                if(trim($myrow->post_excerpt)!=""){
+                    $text = $myrow->post_excerpt;
+                }else if(trim($myrow->post_content!="")){
 					$html = str_get_html(htmlspecialchars_decode($post)); 
-					$text = trim($html->plaintext);
+					$text = substr(trim($html->plaintext),0,300);
 				}	
 	    	}
-	    	if($rimg) $result = array("src"=>$rimg,"text"=>$text);
-	    	else $result = array("src"=>WPWSL_PLUGIN_URL."/img/default_img.png","text"=>$text);
+	    	// if($rimg) 
+	    	$result = array("src"=>$rimg,"text"=>$text);
+	    	// else $result = array("src"=>WPWSL_PLUGIN_URL."/img/trans.png","text"=>$text);
 
     	
         return $result;

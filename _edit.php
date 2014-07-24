@@ -215,7 +215,7 @@ $defauleCate = new stdClass();
 $defauleCate->term_id = "all";
 $defauleCate->cat_name = __("All categories","WPWSL");
 $_re_cates = array_merge(array($defauleCate),get_categories($args_cate));
-$_re_cate_show = ($_re_type=="post") ? true:false;
+$_re_cate_show = ($_re_type=="post"||$_re_type=="") ? false:true;
 $_re_count_label = __("Amount","WPWSL");
 // global $wp_post_types; //get all post types
 $args = array(
@@ -430,7 +430,7 @@ require_once( 'content.php' );
 									    </select>
 									    </td>
 								    </tr>
-								    <tr valign="top" <?php if(!$_re_cate_show):?>style="display:none;"<?php endif; ?> id="re_cate_tr">
+								    <tr valign="top" <?php if($_re_cate_show):?>style="display:none;"<?php endif; ?> id="re_cate_tr">
 								    	<th scope="row"><label><?php _e('Category','WPWSL');?></label></th>
 									    <td>
 									    <select name="re_cate">
