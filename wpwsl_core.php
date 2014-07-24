@@ -209,11 +209,11 @@ function prefix_ajax_add_foobar(){
          <a href="#" id="easydialog_close">✕</a>
 	     <br class="clear">
 	     </div>
-	     <table class="wp-list-table widefat fixed posts" style="min-height:100px;">');
+	     <table class="wp-list-table widefat fixed posts" width="100%" style="min-height:100px;">');
     if(count($posts_array)==0){
         _e("<thead><tr><th style='text-align:center;height: 77px;'>".__('Search results is empty....','WPWSL')."</th></tr></thead>");
     }else{
-    _e("<thead><tr><th class=''>".__('Title','WPWSL')."</th><th>".$typeORcate."</th><th>".__('Create Date','WPWSL')."</th><th>".__('Action','WPWSL')."</th></tr></thead>
+    _e("<thead><tr><th class='' width='50%'>".__('Title','WPWSL')."</th><th width='22%'><div sytle='text-align:center;'>".$typeORcate."</div></th><th width='21%'>".__('Create Date','WPWSL')."</th><th width='7%'>".__('Action','WPWSL')."</th></tr></thead>
     	<tbody>");
         $i=1;
 	    foreach ($posts_array as $key) {
@@ -237,7 +237,7 @@ function prefix_ajax_add_foobar(){
 			}
 			if($i%2!=0) $trclass = "one";else $trclass = "two";
 			$i++;
-	    	_e("<tr class='$trclass'><td>".$key->post_title."</td><td>".$cats."</td><td>".$key->post_date."</td><td><button class='insert_content_to_input' postid='".$key->ID."' tid='".$targetID."'>".__('Insert','WPWSL')."</button></td></tr>");
+	    	_e("<tr class='$trclass'><td>".$key->post_title."</td><td>".$cats."</td><td><div sytle='text-align:center;'>".$key->post_date."</div></td><td><button class='insert_content_to_input' postid='".$key->ID."' tid='".$targetID."'>".__('Insert','WPWSL')."</button></td></tr>");
 	    }
     }
     _e('</tbody></table><div id="paginate_div">'.paginate_links($args_paginate).'</div>');

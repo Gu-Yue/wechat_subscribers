@@ -654,7 +654,6 @@ jQuery(document).ready(function ($) {
 		drag : false
 	    });
         jQuery.get(admin_url,data,function(d,s){
-            //alert(d);
             $("#dialog_content__container").html(d);
 	        //ajax paginate
 		    $("#paginate_div").find(".page-numbers").live("click",function(){
