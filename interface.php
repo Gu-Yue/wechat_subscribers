@@ -156,7 +156,14 @@ class wechatCallbackapi{
 		
 		return $resultStr;
 	}
-	
+	private function parseurl($url=""){
+    $url = rawurlencode($url);
+    $a = array("%3A", "%2F", "%40");
+    $b = array(":", "/", "@");
+    $url = str_replace($a, $b, $url);
+    return $url;
+    }
+
 	private function get_msg_by_type($d, $fromUsername, $toUsername){
 		switch($d->type){
 			case "news":
@@ -215,7 +222,7 @@ class wechatCallbackapi{
 		foreach ($contentData as $mediaObject){
 			$title=$mediaObject->title;
 			$des=$mediaObject->des;
-			$media=$mediaObject->pic;
+			$media=$this->parseurl($mediaObject->pic);
 			$url=$mediaObject->url;
 			$itemStr .= sprintf($itemTpl, $title, $des, $media, $url);
 			$mediaCount++;
@@ -319,7 +326,7 @@ class wechatCallbackapi{
 		    $src_and_text = $this->getImgsSrcInPost($mediaObject->ID,$mediaObject->post_content,$i,$contentData['type']);			
 			$title= $mediaObject->post_title;
 			$des  = $src_and_text['text'];  // strip_tags or not
-			$media= $src_and_text['src'];
+			$media= $this->parseurl($src_and_text['src']);;
 			$url  = $contentData['type']=="attachment"?home_url('/?attachment_id='.$mediaObject->ID):$mediaObject->guid;
 			$itemStr .= sprintf($itemTpl, $title, $des, $media, $url);
 			$mediaCount++;
