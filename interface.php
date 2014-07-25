@@ -157,11 +157,11 @@ class wechatCallbackapi{
 		return $resultStr;
 	}
 	private function parseurl($url=""){
-    $url = rawurlencode($url);
-    $a = array("%3A", "%2F", "%40");
-    $b = array(":", "/", "@");
-    $url = str_replace($a, $b, $url);
-    return $url;
+	    $url = rawurlencode($url);
+	    $a = array("%3A", "%2F", "%40");
+	    $b = array(":", "/", "@");
+	    $url = str_replace($a, $b, $url);
+	    return $url;
     }
 
 	private function get_msg_by_type($d, $fromUsername, $toUsername){
@@ -221,7 +221,7 @@ class wechatCallbackapi{
 		$mediaCount=0;
 		foreach ($contentData as $mediaObject){
 			$title=$mediaObject->title;
-			$des=$mediaObject->des;
+			$des= $mediaObject->des;
 			$media=$this->parseurl($mediaObject->pic);
 			$url=$mediaObject->url;
 			$itemStr .= sprintf($itemTpl, $title, $des, $media, $url);
@@ -258,11 +258,11 @@ class wechatCallbackapi{
 		$posts = get_posts($args);
 		return $posts;
     }
-    private function getImgsSrcInPost($post_id,$post=null,$i,$type){
+    private function getImgsSrcInPost($post_id,$post=null,$i,$type,$post_excerpt){
 
 	    	$imageSize = $i == 1 ? "sup_wechat_big":"sup_wechat_small";
-	    	$text = " ";
-	    	$rimg = null;
+	    	$text = "";
+	    	$rimg = WPWSL_PLUGIN_URL."/img/".$imageSize.".png";;
 	    	if($type=="attachment"){
 	           $rimg = wp_get_attachment_image_src($post_id,$imageSize)[0];
 	    	}else{
@@ -287,14 +287,15 @@ class wechatCallbackapi{
 					   	  $rimg = $img->src;
 					   }
 				   }
-				}
-                if(trim($myrow->post_excerpt)!=""){
-                    $text = $myrow->post_excerpt;
-                }else if(trim($myrow->post_content!="")){
-					$html = str_get_html(htmlspecialchars_decode($post)); 
-					$text =  wp_trim_words(trim($html->plaintext),120, '...' );
 				}	
 	    	}
+	    	if(trim($post_excerpt)!=""){
+                    $text = $post_excerpt;
+                }else if(trim($post!="")){
+					$html = str_get_html(htmlspecialchars_decode($post)); 
+					$text = mb_substr($html->plaintext,0,140,DB_CHARSET);
+					$text = mb_strlen($html->plaintext,DB_CHARSET)>140 ? $text."..." : $text;
+				}
 	    	// if($rimg) 
 	    	$result = array("src"=>$rimg,"text"=>$text);
 	    	// else $result = array("src"=>WPWSL_PLUGIN_URL."/img/trans.png","text"=>$text);
@@ -323,7 +324,7 @@ class wechatCallbackapi{
 		$mediaCount=0;
 		$i=1;
 		foreach ($posts as $mediaObject){
-		    $src_and_text = $this->getImgsSrcInPost($mediaObject->ID,$mediaObject->post_content,$i,$contentData['type']);			
+		    $src_and_text = $this->getImgsSrcInPost($mediaObject->ID,$mediaObject->post_content,$i,$contentData['type'],$mediaObject->post_excerpt);			
 			$title= $mediaObject->post_title;
 			$des  = $src_and_text['text'];  // strip_tags or not
 			$media= $this->parseurl($src_and_text['src']);;

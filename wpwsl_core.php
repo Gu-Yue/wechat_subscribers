@@ -275,9 +275,10 @@ function prefix_ajax_get_insert_content(){
 	}else if($_GET['rtype']=="phmsg"){
 		$imageSize = isset($_GET['imagesize'])&&$_GET['imagesize']=="small" ? "sup_wechat_small":"sup_wechat_big";
 		$myrow = get_post($_GET['postid']);
-				$myrow->pic = WPWSL_PLUGIN_URL."/img/trans.png";
+				$myrow->pic = WPWSL_PLUGIN_URL."/img/".$imageSize.".png";
 				if(has_post_thumbnail($_GET['postid'])){
 				   $myrow->pic = wp_get_attachment_image_src(get_post_thumbnail_id($_GET['postid']),$imageSize)[0];
+
 				}else if(has_post_thumbnail($_GET['postid'])==""&&trim($myrow->post_content)!=""){			   
 				   $html = str_get_html(htmlspecialchars_decode($myrow->post_content));
 				   $img = $html->find('img',0);
@@ -301,9 +302,8 @@ function prefix_ajax_get_insert_content(){
                    $myrow->post_content = $myrow->post_excerpt;
                 }else if(trim($myrow->post_content!="")){
 					$html = str_get_html(htmlspecialchars_decode($myrow->post_content));
-					$myrow->post_content = wp_trim_words(trim($html->plaintext),120, '...' );
+					$myrow->post_content = wp_trim_words(trim($html->plaintext),140, '...' );
 				}
-
 				
 	
         $r = array(
