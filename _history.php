@@ -3,7 +3,8 @@
  * Settings Page, It's required by WPWSLGeneral Class only.
  *
  */
-require_once( 'class-wpwsl-keywords-table.php' );
+require_once( 'class-wpwsl-history-table.php' );
+
 function delete_record($id){
 	global $wpdb;
     $wpdb->query("delete from wechat_subscribers_lite_keywords where id='$id'");
@@ -36,7 +37,7 @@ foreach($raw as $d){
 }
 
 //Prepare Table of elements 
-$wp_list_table = new WPWSL_KeyWords_Table($data);
+$wp_list_table = new WPWSL_History_Table($data);
 $wp_list_table->prepare_items();
 
 //Load content
@@ -47,10 +48,9 @@ require_once( 'content.php' );
 	<?php echo $content['header'];?>
 	<hr>
 	<h2>
-	<?php _e('Statistics','WPWSL');?> 
-	<a href="<?php menu_page_url(WPWSL_GENERAL_PAGE);?>" class="add-new-h2"><?php _e('Reply Templates',"WPWSL");?></a>
-	<a href="<?php menu_page_url(WPWSL_GENERAL_PAGE);?>&keywords" class="add-new-h2" style="float:right;"><?php _e("清空记录");?></a>
-    <a href="<?php menu_page_url(WPWSL_GENERAL_PAGE);?>&charts" class="add-new-h2" style="float:right;"><?php _e("图表");?></a>
+	 <?php _e('Statistics','WPWSL');?>
+	 <a href="<?php menu_page_url(WPWSL_HISTORY_PAGE);?>&charts" class="add-new-h2"><?php _e('Charts',"WPWSL");?></a>
+	 <a href="<?php menu_page_url(WPWSL_GENERAL_PAGE);?>&charts" class="add-new-h2" style="float:right;"><?php _e("Clear All Records","WPWSL");?></a>
 	</h2>
 	<br>
 	<form action="" method="get">

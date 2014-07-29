@@ -33,8 +33,13 @@ WeChat Subscribers Lite
 	border-radius: 5px;
 }
 .msg-box-title{
-	width: 40%;
+	width: 13.7%;
 	float: left;
+}
+.phmsg_sync_link a>img{
+	position:relative;
+    top:4px;
+    margin-right:2px;
 }
 .deslist{
 	margin-left: 20px;
