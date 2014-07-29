@@ -322,6 +322,10 @@ msgstr "消息统计"
 msgid "Charts"
 msgstr "统计图"
 
+#: _history.php:71
+msgid "Empty all the records ?"
+msgstr "清空所有的消息记录 ?"
+
 #: _history.php:53
 msgid "Clear All Records"
 msgstr "清空所有记录"

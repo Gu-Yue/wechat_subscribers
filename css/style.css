@@ -189,4 +189,9 @@ WeChat Subscribers Lite
 	font-weight: 900;
 	font-family: "Microsoft yahei",Arial;
 }
-
+#clear_all_records{
+	color:#0074A2 !important;
+}
+#clear_all_records:hover{
+	color:#FFFFFF !important;
+}
