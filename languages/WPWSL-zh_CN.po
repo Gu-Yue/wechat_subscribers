@@ -55,10 +55,6 @@ msgstr "创建时间"
 msgid "Action"
 msgstr "操作"
 
-#: wpwsl_core.php:188
-msgid "Insert"
-msgstr "插入"
-
 #: wpwsl_core.php:44
 msgid "WeChat big image"
 msgstr "微信大图"
@@ -248,6 +244,10 @@ msgstr "保存"
 #: _edit.php:356,438
 msgid "Cancel"
 msgstr "取消"
+
+#: _edit.php:357
+msgid "Article Sync"
+msgstr "同步文章"
 
 #: _edit.php:357
 msgid "Sync"

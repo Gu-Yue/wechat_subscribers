@@ -341,7 +341,7 @@ require_once( 'content.php' );
 								    	<th scope="row"><label><?php _e('Content','WPWSL');?></label></th>
 									    <td>
 									    	<textarea id="resp_msg_textarea" name="content" rows="10" class="large-text"><?php echo $_content;?></textarea>
-									    	<p class="description"><button type='button' rtype="posts" tid='resp_msg_textarea' class="alert_dialog_include_posts"><?php _e('Insert Article','WPWSL'); ?></button><?php _e('Only plain text, without any script.','WPWSL');?></p>
+									    	<p class="description"><button type='button' rtype="posts" tid='resp_msg_textarea' class="button alert_dialog_include_posts"><?php _e('Insert Article','WPWSL'); ?></button>&nbsp;<?php _e('Only plain text, without any script.','WPWSL');?></p>
 									    </td>
 								    </tr>
 								</table>
@@ -352,11 +352,19 @@ require_once( 'content.php' );
 							<h3><?php _e('News Message','WPWSL');?></h3>
 							<div id="phmsg-base">
 								<div class="msg-box">
-									<h3 rel="title" class="msg-box-title" data-subtitle="<?php _e('Sub','WPWSL');?>"><?php _e('Main Photo and Text','WPWSL');?></h3>
-									<div class='phmsg_sync_link'><a href="javascript:;" rtype='phmsg' class="alert_dialog_include_posts insert_resp_phmsg"><img width="16" height="16" src="<?php _e(WPWSL_PLUGIN_URL) ?>/img/sync.ico"><span><?php _e('Sync','WPWSL');?></span></a></div>
+									
+									
 									<div class="func-msg-box"><a href="#" class="up-msg-box-btn">&nbsp;</a>&nbsp;<a href="#" class="down-msg-box-btn">&nbsp;</a></div>
 									<div class="clear"></div>
 									<table class="form-table">
+									    <tr valign="top">
+											<th scope="row">
+												<h3 rel="title" class="msg-box-title" data-subtitle="<?php _e('Sub','WPWSL');?>"><?php _e('Main Photo and Text','WPWSL');?></h3>
+											</th>
+											<td>
+												<div class='phmsg_sync_link'><a href="javascript:;" rtype='phmsg' class="button button-primary alert_dialog_include_posts insert_resp_phmsg">&nbsp;&nbsp;<img width="16" height="16" src="<?php _e(WPWSL_PLUGIN_URL) ?>/img/sync.png">&nbsp;<span><?php _e('Article Sync','WPWSL');?></span>&nbsp;&nbsp;</a></div>
+											</td>
+										</tr>
 										<tr valign="top">
 											<th scope="row">
 												<label><?php _e('Title','WPWSL');?></label>
@@ -395,7 +403,7 @@ require_once( 'content.php' );
 											</th>
 											<td>
 												<input class="phmsg-base-input-url" type="text" name="url[]" value="<?php echo $_phmsg_main->url;?>" class="large-text"/>
-												<p class="description"><button type="button" rtype='urls' class="alert_dialog_include_posts"><?php _e('Insert URL','WPWSL'); ?></button><?php _e('The URL you want direct to. etc., http://www.tinforce.com','WPWSL');?></p>
+												<p class="description"><button type="button" rtype='urls' class="button alert_dialog_include_posts"><?php _e('Insert URL','WPWSL'); ?></button>&nbsp;<?php _e('The URL you want direct to. etc., http://www.tinforce.com','WPWSL');?></p>
 											</td>
 										</tr>
 									</table>

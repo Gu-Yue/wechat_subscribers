@@ -40,7 +40,7 @@ function prefix_ajax_add_foobar(){
 	    $catelist =  get_categories( $args_cate );
 	    $cateoptions = "<option value='default' value='default' class='select_cate_choose' >".__('All categories','WPWSL')."</option>";
 	    foreach ($catelist as $key) {
-	    	if( $_GET['catid']== $key->term_id)
+	    	if(isset($_GET['catid'])&&$_GET['catid']== $key->term_id)
 	    	$cateoptions .= "<option class='select_cate_choose' value='".$key->term_id."' selected='selected'>".$key->cat_name."</option>";
 	        else
 	        $cateoptions .= "<option class='select_cate_choose' value='".$key->term_id."' >".$key->cat_name."</option>";
@@ -63,6 +63,7 @@ function prefix_ajax_add_foobar(){
         
         //get posts
 	    $typeORcate = __('Category','WPWSL');
+	    $searchKeyInput = "";
 		if(isset($_GET['key'])&&trim($_GET['key'])!=""){
             $str = urldecode($_GET['key']);
             $searchKeyInput = trim($_GET['key']);
@@ -85,7 +86,17 @@ function prefix_ajax_add_foobar(){
 		'prev_text'    => __('«'),
 		'next_text'    => __('»')
 		);
-
+     switch ($_GET['rtype']) {
+     	case 'posts':
+     		$button_value = __("Insert Article","WPWSL");
+     		break;
+     	case 'urls':
+     		$button_value = __("Insert URL","WPWSL");
+     		break;
+     	case 'phmsg':
+     		$button_value = __("Sync","WPWSL");
+     		break;
+     }
 	_e('<input type="hidden" id="hidden_post_tid" value="'.$_GET['tid'].'">
 		<input type="hidden" id="hidden_post_type" value="'.$_GET['rtype'].'">
 		<input type="hidden" id="hidden_search_key" value="'.$searchKeyInput.'">
@@ -111,7 +122,7 @@ function prefix_ajax_add_foobar(){
     if(count($posts_array)==0){
         _e("<thead><tr><th style='text-align:center;height: 77px;'>".__('Search results is empty....','WPWSL')."</th></tr></thead>");
     }else{
-    _e("<thead><tr><th class='' width='50%'>".__('Title','WPWSL')."</th><th width='16%'><div sytle='text-align:center;'>".$typeORcate."</div></th><th width='22%'>".__('Create Date','WPWSL')."</th><th width='12%'>".__('Action','WPWSL')."</th></tr></thead>
+    _e("<thead><tr><th class='' width='50%'>".__('Title','WPWSL')."</th><th width='16%'><div sytle='text-align:center;'>".$typeORcate."</div></th><th width='22%'>".__('Create Date','WPWSL')."</th><th width='14%'>".__('Action','WPWSL')."</th></tr></thead>
     	<tbody>");
         $i=1;
 	    foreach ($posts_array as $key) {
@@ -135,7 +146,7 @@ function prefix_ajax_add_foobar(){
 			}
 			if($i%2!=0) $trclass = "one";else $trclass = "two";
 			$i++;
-	    	_e("<tr class='$trclass'><td>".$key->post_title."</td><td>".$cats."</td><td><div sytle='text-align:center;'>".$key->post_date."</div></td><td><button class='insert_content_to_input' postid='".$key->ID."' tid='".$targetID."'>".__('Insert','WPWSL')."</button></td></tr>");
+	    	_e("<tr class='$trclass'><td>".$key->post_title."</td><td>".$cats."</td><td><div sytle='text-align:center;'>".$key->post_date."</div></td><td><button type='button' class='button button-primary insert_content_to_input' postid='".$key->ID."' tid='".$targetID."'>".$button_value."</button></td></tr>");
 	    }
     }
     _e('</tbody></table><div id="paginate_div">'.paginate_links($args_paginate).'</div>');
