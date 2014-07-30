@@ -28,7 +28,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 2. 便捷管理多种weixin消息模版，可随时切换，数量不限。
 3. 多种消息模式，默认自动回复消息，关键词自动回复消息，weixin订阅自动回复欢迎消息，都可以随时便捷更改。
 4. 自动检测关键词冲突。
-5. 自由设置设置纯文本消息，图文消息，可随时切换消息类型，排序。
+5. 自由设置纯文本消息、图文消息、最近消息，可随时切换消息类型，排序。
 6. 图片上传管理都使用Wordpress原生图片管理器。
 
 访问插件主页获得更多帮助: <a href="http://www.imredy.com/wp_wechat">http://www.imredy.com/wp_wechat</a>.
@@ -43,7 +43,7 @@ Features:
 2. Easy to manage multiple weixin message template.
 3. Multiple message type, default reply message, trigger by keywords and new weixin subscriber join in. you can switch thier types any time.
 4. Automatic check keywords conflict.
-5. Free to set message type any time. both text message and graphic news message.
+5. Free to set message type any time. both text message , graphic news message and recently news message.
 6. Use native wordpress media manage tool to upload pitcures.
 
 Please visit <a href="http://www.imredy.com/wp_wechat">http://www.imredy.com/wp_wechat</a>.
