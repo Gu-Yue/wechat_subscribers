@@ -3,7 +3,7 @@
  * Plugin Name: WeChat Subscribers Lite
  * Plugin URI: http://www.imredy.com/wp_wechat/
  * Description: 轻便易用的微信(weixin)公众平台订阅号管理工具。Light weight WeChat (Subscribers) public platform management tool.
- * Version: 1.04
+ * Version: 2.0
  * Author: Redy Ru,Gu Yue
  * Author URI: http://www.imredy.com/
  * License: GPLv2 or later
@@ -100,9 +100,9 @@ add_action('admin_print_scripts', 'custom_admin_scripts');
 function custom_admin_scripts() {
 	wp_enqueue_script('jquery');
 	wp_enqueue_media();
-	wp_register_script('custom-upload', WPWSL_PLUGIN_URL.'/js/custom_upload.js', array('jquery','media-upload','thickbox'));
+	wp_register_script('custom-upload', WPWSL_PLUGIN_URL.'/js/custom_upload.js', array('jquery','media-upload','thickbox'),"2.0");
 	wp_enqueue_script('custom-upload');
-	wp_register_script('easydialog', WPWSL_PLUGIN_URL.'/js/easydialog.min.js', array('jquery','media-upload','thickbox'));
+	wp_register_script('easydialog', WPWSL_PLUGIN_URL.'/js/easydialog.min.js',array(),"2.0");
 	wp_enqueue_script('easydialog');
 }
 // Add settings link on plugin page
