@@ -142,29 +142,30 @@ custom  modal csss
     -ms-transition-property: all;
     transition-property: all !important;
 }
-@media(max-width:723px) {
-    .insert_content_to_input{
-    width:100px;
-    padding: 2px 0px !important;
-    font-size: 14px !important;
-    overflow: hidden;
-    text-align: center !important;
-    
-  }
+ .insert_content_to_input{
+    min-width: 42px;
+}
+@media(max-width:900px) {
   @media (max-width:606px) {
   .insert_content_to_input{
-    width: 42px;
-    padding: 2px 0px !important;
+    min-width: 42px;
+    padding: 4px !important;
     font-size: 14px !important;
-    overflow: hidden;
     text-align: center !important;
+    height: 42px !important;
   }
-  .insert_content_to_input sapn{
-      display: none;
+  .insert_content_to_input span{
+     display: block;
   }
  }
+  #dialog_content__container tr th:first-child{
+  width: 20%;
+  }
+  #dialog_content__container tr th:last-child{
+  width: 30%;
+  }
 }
- @media (max-width: 785px){
+ @media (max-width: 790px){
   #search_con{
     display: block;
     clear: both;

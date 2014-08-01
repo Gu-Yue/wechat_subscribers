@@ -80,10 +80,10 @@ function prefix_ajax_add_foobar(){
 		);
      switch ($_GET['rtype']) {
      	case 'posts':
-     		$button_value = __("Insert","WPWSL")."<sapn>".__(" Content","WPWSL")."</span>";
+     		$button_value = __("Insert","WPWSL")."<span>".__(" Content","WPWSL")."</span>";
      		break;
      	case 'urls':
-     		$button_value = __("Insert","WPWSL")."<sapn>".__(" URL","WPWSL")."</span>";
+     		$button_value = __("Insert","WPWSL")."<span>".__(" URL","WPWSL")."</span>";
      		break;
      	case 'phmsg':
      		$button_value = __("Sync","WPWSL");

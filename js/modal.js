@@ -472,9 +472,9 @@
                         onCloseLaunch = new Function ( 'onClose', 'return ' + onClose )(onClose);
                     onCloseLaunch();
                 }
-
-                // Go to te last position scroll.
-                window.top.scroll( 0, modal.getAttribute('data-' + cb + '-scroll') );
+                
+                var add_opsition = modal.getAttribute('data-' + cb + '-scroll')  != undefined ? modal.getAttribute('data-' + cb + '-scroll') : null;
+                window.top.scroll( 0, add_opsition );
 
             }, obj.settings.speed );
 

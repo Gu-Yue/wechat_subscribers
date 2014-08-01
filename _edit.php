@@ -671,7 +671,7 @@ jQuery(document).ready(function ($) {
             $("#dialog_content__container").html(d);
 		    $("#paginate_div").find(".page-numbers").live("click",function(){
 		       var $this = $(this);
-		       var cur = ($this.attr("href")).substr(1);
+		       var cur = $this.attr("href") ? ($this.attr("href")).substr(1) : "";
 		           cur = cur ==""?1:cur;	
 		       var data = {
 		       	   action: 'add_foobar',
