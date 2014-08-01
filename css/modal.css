@@ -142,19 +142,30 @@ custom  modal csss
     -ms-transition-property: all;
     transition-property: all !important;
 }
-
-@media (max-width: 555px) {
-  .insert_content_to_input{
-    width: 30px;
+@media(max-width:723px) {
+    .insert_content_to_input{
+    width:100px;
     padding: 2px 0px !important;
     font-size: 14px !important;
     overflow: hidden;
-    text-align: left !important;
+    text-align: center !important;
     
   }
+  @media (max-width:606px) {
+  .insert_content_to_input{
+    width: 42px;
+    padding: 2px 0px !important;
+    font-size: 14px !important;
+    overflow: hidden;
+    text-align: center !important;
+  }
+  .insert_content_to_input sapn{
+      display: none;
+  }
  }
+}
  @media (max-width: 785px){
-    #search_con{
+  #search_con{
     display: block;
     clear: both;
     padding-top: 3px;
@@ -163,13 +174,12 @@ custom  modal csss
     display: block;
     clear:both;
   }
-  #select_cate_conatiner{
-    display: block;
-    clear:both;
-  }
   #post-search-submit{
     position: relative;
      top:-4px;
    padding:4px 4px 5px 4px;
+  }
+  #dialog_content__container table{
+    margin-top: 0px !important;
   }
  }

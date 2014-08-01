@@ -80,10 +80,10 @@ function prefix_ajax_add_foobar(){
 		);
      switch ($_GET['rtype']) {
      	case 'posts':
-     		$button_value = __("Insert Content","WPWSL");
+     		$button_value = __("Insert","WPWSL")."<sapn>".__(" Content","WPWSL")."</span>";
      		break;
      	case 'urls':
-     		$button_value = __("Insert URL","WPWSL");
+     		$button_value = __("Insert","WPWSL")."<sapn>".__(" URL","WPWSL")."</span>";
      		break;
      	case 'phmsg':
      		$button_value = __("Sync","WPWSL");
@@ -108,10 +108,13 @@ function prefix_ajax_add_foobar(){
 		<div class="tablenav top">
           <div class="alignleft actions bulkactions" id="type_con">
 		  <select id="select_type_action">'.$_post_types.'</select>
-		  </div>
-		  <div class="alignleft actions" id="select_cate_conatiner" style="'.$isCateShow.'">
+
+		  <span style="'.$isCateShow.'">
 		  <select id="select_cate_action">'.$cateoptions.'</select>
-         </div>
+          </span>
+		  
+		  </div>
+		  
          <div class="alignleft actions" id="search_con">
          <label class="screen-reader-text" for="post-search-input"></label>
          <input id="post-search-key" type="search" value="'.$searchKeyInput.'" style="padding-top:5px;padding-bottom:4px;"></input>
