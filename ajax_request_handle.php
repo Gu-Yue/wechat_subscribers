@@ -128,7 +128,7 @@ function prefix_ajax_add_foobar(){
     if(count($posts_array)==0){
         _e("<thead><tr><th style='text-align:center;height: 77px;'>".__('Search results is empty....','WPWSL')."</th></tr></thead>");
     }else{
-    _e("<thead><tr><th class='' width='40%'>".__('Title','WPWSL')."</th><th width='16%'><div sytle='text-align:center;'>".$typeORcate."</div></th><th width='22%'>".__('Create Date','WPWSL')."</th><th width='22%'>".__('Action','WPWSL')."</th></tr></thead>
+    _e("<thead><tr><th class='' width='40%'>".__('Title','WPWSL')."</th><th width='16%'><div sytle='text-align:center;'>".$typeORcate."</div></th><th width='22%'>".__('Create Date','WPWSL')."</th><th width='22%' style='text-align:center;'>".__('Action','WPWSL')."</th></tr></thead>
     	<tbody>");
         $i=1;
 	    foreach ($posts_array as $key) {
@@ -155,7 +155,7 @@ function prefix_ajax_add_foobar(){
 	    	}
 			if($i%2!=0) $trclass = "one";else $trclass = "two";
 			$i++;
-	    	_e("<tr class='$trclass'><td>".$key->post_title."</td><td>".$cats."</td><td><div sytle='text-align:center;'>".$key->post_date."</div></td><td><button type='button' class='button button-primary insert_content_to_input' postid='".$key->ID."' tid='".$targetID."'>".$button_value."</button></td></tr>");
+	    	_e("<tr class='$trclass'><td>".$key->post_title."</td><td>".$cats."</td><td><div sytle='text-align:center;'>".$key->post_date."</div></td><td style='text-align:center;'><button type='button' class='button button-primary insert_content_to_input' postid='".$key->ID."' tid='".$targetID."'>".$button_value."</button></td></tr>");
 	    }
     }
     _e('</tbody></table><div id="paginate_div">'.paginate_links($args_paginate).'</div>');

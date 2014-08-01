@@ -145,24 +145,21 @@ custom  modal csss
  .insert_content_to_input{
     min-width: 42px;
 }
-@media(max-width:900px) {
+@media(max-width:780px) {
   @media (max-width:606px) {
   .insert_content_to_input{
-    min-width: 42px;
     padding: 4px !important;
-    font-size: 14px !important;
     text-align: center !important;
-    height: 42px !important;
   }
   .insert_content_to_input span{
      display: block;
   }
  }
   #dialog_content__container tr th:first-child{
-  width: 20%;
+  width: 24%;
   }
   #dialog_content__container tr th:last-child{
-  width: 30%;
+  width: 26%;
   }
 }
  @media (max-width: 790px){
